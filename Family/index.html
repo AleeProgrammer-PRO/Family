@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Keluarga Kami</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- TEMA & WARNA --- */
+        :root {
+            --primary-color: #8D6E63; /* Cokelat Hangat */
+            --bg-color: #FDFBF7; /* Krem Lembut */
+            --text-color: #4E342E; /* Cokelat Gelap */
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        h1, h2, h3, h4, h5, .navbar-brand { 
+            font-family: 'Playfair Display', serif; 
+            color: var(--text-color);
+        }
+
+        /* --- NAVIGASI --- */
+        .navbar {
+            background-color: rgba(253, 251, 247, 0.95) !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        .navbar-brand { font-size: 1.5rem; font-weight: 700; color: var(--primary-color) !important; }
+        .nav-link { color: var(--text-color) !important; font-weight: 500; }
+        .nav-link:hover { color: var(--primary-color) !important; }
+
+        /* --- 1. HALAMAN PEMBUKA --- */
+        .hero-section {
+            background: linear-gradient(rgba(141, 110, 99, 0.4), rgba(78, 52, 46, 0.7)), url('gambar/baground.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .hero-section h1 { color: white; font-size: 4rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-section p { color: #f8f9fa; font-weight: 300; }
+        .btn-custom {
+            background-color: #D7CCC8;
+            color: var(--text-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-custom:hover { background-color: var(--primary-color); color: white; }
+
+        /* Spacing antar section */
+        section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--primary-color); }
+        .section-title p { color: #795548; font-size: 1.1rem; }
+
+        /* --- 2. TENTANG KAMI --- */
+        .member-card {
+            border: none;
+            background: transparent;
+            text-align: center;
+        }
+        .member-img-wrapper {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 8px;
+            background: white;
+            box-shadow: 0 10px 20px rgba(141, 110, 99, 0.15);
+        }
+        .member-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        /* --- 3. GALERI FOTO (Gaya Polaroid) --- */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 20px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+        .polaroid:hover { transform: translateY(-10px) rotate(2deg); z-index: 2; box-shadow: 0 12px 20px rgba(0,0,0,0.15); }
+        .polaroid img { width: 100%; height: 220px; object-fit: cover; }
+
+        /* --- 4. BUKU TAMU --- */
+        .guestbook-card {
+            background-color: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(141, 110, 99, 0.1);
+        }
+        .form-control {
+            border: none;
+            border-bottom: 2px solid #D7CCC8;
+            border-radius: 0;
+            background: transparent;
+            padding-left: 0;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-bottom-color: var(--primary-color);
+            background: transparent;
+        }
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            padding: 10px 20px;
+        }
+        .btn-submit:hover { background-color: var(--text-color); color: white; }
+
+        /* --- 5. KONTAK & FOOTER --- */
+        #kontak {
+            background-color: var(--text-color);
+            color: #FDFBF7;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+        }
+        #kontak h2, #kontak h5 { color: #D7CCC8; }
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            color: #D7CCC8;
+        }
+        footer { background-color: #3E2723; padding: 20px 0; color: #BCAAA4; font-size: 0.9rem; }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="85" tabindex="0">
+
+    <!-- Navigasi -->
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#beranda"><i class="fas fa-home me-2"></i>Keluarga Ali Muhdor</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars fa-lg text-dark"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bukutamu">Buku Tamu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Halaman Pembuka -->
+    <section id="beranda" class="hero-section">
+        <div class="container">
+            <h1 class="mb-3">Ali Muhdor Family</h1>
+            <p class="lead mb-4">Setiap rumah memiliki cerita, dan cerita kami ditulis dengan kasih sayang dan keharmonisan.</p>
+            <a href="#tentang" class="btn btn-custom btn-lg shadow-sm">Jelajahi Momen Kami</a>
+        </div>
+    </section>
+
+    <!-- 2. Tentang Kami -->
+    <section id="tentang">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Kami</h2>
+                <p>Mengenal lebih dekat wajah-wajah penuh cinta di keluarga kami.</p>
+            </div>
+            <!-- Susunan baris diubah agar 5 orang tampil rapi dan responsif -->
+            <div class="row g-5 justify-content-center">
+                <!-- Ayah -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/ayah.jpeg" alt="Ayah" style="object-position: top;">
+                        </div>
+                        <h5>Bpk. Ali Muhdor</h5>
+                        <p class="text-muted">Bos di atas kertas, dan ahli membetulkan segala barang yang rusak di rumah. / Ayah</p>
+                    </div>
+                </div>
+                <!-- Ibu -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/ibu.jpeg" alt="Ibu" style="object-position: top;">
+                        </div>
+                        <h5>Ibu Mardiyah</h5>
+                        <p class="text-muted">Penguasa sesungguhnya di kediaman ini, dan koki terbaik di dunia yang selalu punya cara membuat rumah terasa hangat. / Ibu</p>
+                    </div>
+                </div>
+                <!-- Sulung -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/kakek.jpeg" alt="Kakek" style="object-position: top;">
+                        </div>
+                        <h5>Mbah Askuri</h5>
+                        <p class="text-muted">Warga kehormatan yang kasta-nya ada di atas Ayah dan Ibu, sekaligus ULAMA tertinggi di keluarga kami. / Kakek</p>
+                    </div>
+                </div>
+                <!-- Bungsu -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/si-sulung.jpeg" alt="Anak">
+                        </div>
+                        <h5>Si Sulung</h5>
+                        <p class="text-muted">Tampilannya selalu anggun dan elegan paripurna. Nyaris setiap hari selalu ada kurir yang teriak "Pakeeet!" di depan rumah atas namanya, yang kadang dia sendiri pun lupa baru saja beli apa. / Anak</p>
+                    </div>
+                </div>
+                <!-- Bapak Guru -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/si-bungsu.jpeg" alt="Anak">
+                        </div>
+                        <h5>Si Bungsu</h5>
+                        <p class="text-muted">Punya jadwal main dan ngopi yang lebih padat dari jadwal menteri. Di luar rumah gayanya paling hits sedunia, tapi kalau sudah di rumah keahlian utamanya berubah jadi juara satu rebahan. / Anak</p>
+                    </div>
+                </div>
+                <!-- Bapak Guru -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="member-card">
+                        <div class="member-img-wrapper">
+                            <img src="gambar/mas-marzuki.jpeg" alt="Anak">
+                        </div>
+                        <h5>Mas Marzuki</h5>
+                        <p class="text-muted">Rekrutan terbaru keluarga ini. Masih dalam masa adaptasi dengan kehebohan rumah, dan wajib tertawa kalau Ayah sedang melontarkan jokes garing. / Anak</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Galeri Foto -->
+    <section id="galeri" style="background-color: #F5F0E6;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri Kenangan</h2>
+                <p>Jejak langkah dan senyum yang terekam dalam bingkai.</p>
+            </div>
+            
+            <h4 class="mb-4 text-center">✨ Momen Hari Raya ✨</h4>
+            <div class="row">
+                <div class="col-md-3 col-6"><div class="polaroid"><img src="gambar/hari-raya1.jpeg" alt="Hari Raya"></div></div>
+                <div class="col-md-3 col-6"><div class="polaroid"><img src="gambar/hari-raya2.jpeg" alt="Hari Raya"></div></div>
+                <div class="col-md-3 col-6"><div class="polaroid"><img src="gambar/hari-raya3.jpeg" alt="Hari Raya"></div></div>
+                <div class="col-md-3 col-6"><div class="polaroid"><img src="gambar/hari-raya4.jpeg" alt="Hari Raya"></div></div>
+            </div>
+
+            <h4 class="mb-4 mt-5 text-center">📸 Liburan Momen 📸</h4>
+            <div class="row">
+                <div class="col-md-4 col-sm-6"><div class="polaroid"><img src="gambar/momen1.jpeg" alt="Liburan"></div></div>
+                <div class="col-md-4 col-sm-6"><div class="polaroid"><img src="gambar/momen2.jpeg" alt="Liburan"></div></div>
+                <div class="col-md-4 col-12"><div class="polaroid"><img src="gambar/momen3.jpeg" alt="Liburan"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Buku Tamu Digital -->
+    <section id="bukutamu">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card guestbook-card p-4 p-md-5">
+                        <div class="section-title mb-4">
+                            <h2>Sapa Kami</h2>
+                            <p>Tinggalkan jejak Anda di rumah digital kami.</p>
+                        </div>
+                        <form id="formBukuTamu">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label class="text-muted small">Nama Anda</label>
+                                    <input type="text" class="form-control" id="inputNama" placeholder="Ketik nama di sini..." required>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label class="text-muted small">Asal / Kota</label>
+                                    <input type="text" class="form-control" id="inputAsal" placeholder="Ketik kota asal..." required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="text-muted small">Kesan & Pesan</label>
+                                <textarea class="form-control" id="inputPesan" rows="3" placeholder="Tuliskan pesan manis Anda..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit w-100 shadow-sm"><i class="fas fa-paper-plane me-2"></i>Kirim Pesan</button>
+                        </form>
+
+                        <div class="mt-5">
+                            <h5 class="mb-4 border-bottom pb-2">Pesan Masuk:</h5>
+                            <div id="daftarPesan">
+                                <!-- Pesan otomatis -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Kontak -->
+    <section id="kontak" class="text-center pb-5">
+        <div class="container pt-4">
+            <div class="section-title mb-5">
+                <h2>Tetap Terhubung</h2>
+                <p class="text-white-50">Pintu rumah kami selalu terbuka untuk keluarga dan sahabat.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-icon"><i class="fas fa-home fa-2x"></i></div>
+                    <h5>Alamat Rumah</h5>
+                    <p class="text-white-50">Dsn Bades, RT 02/RW 04, Ds Karangbendo<br>Rogojampi, Banyuwangi, Jawa Timur</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-icon"><i class="fab fa-whatsapp fa-2x"></i></div>
+                    <h5>WhatsApp</h5>
+                    <p class="text-white-50">+62 857-0415-9663</p>
+                    <!-- Perbaikan Format Link WhatsApp -->
+                    <a href="https://wa.me/6285704159663" target="_blank" class="btn btn-outline-light btn-sm rounded-pill px-4">Chat Kami</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-icon"><i class="fas fa-share-alt fa-2x"></i></div>
+                    <h5>Media Sosial</h5>
+                    <div class="mt-3">
+                        <a href="#" class="text-white-50 me-3 fs-4 hover-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white-50 me-3 fs-4 hover-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white-50 fs-4 hover-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p class="mb-0">&copy; 2026 Keluarga Besar Bpk. Ali Muhdor. Dibuat dengan cinta.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript Buku Tamu -->
+    <script>
+        const form = document.getElementById('formBukuTamu');
+        const daftarPesan = document.getElementById('daftarPesan');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('inputNama').value;
+            const asal = document.getElementById('inputAsal').value;
+            const pesan = document.getElementById('inputPesan').value;
+
+            const elemenPesan = document.createElement('div');
+            elemenPesan.className = 'card mb-3 border-0 bg-light p-2';
+            elemenPesan.style.borderRadius = "15px";
+            elemenPesan.innerHTML = `
+                <div class="card-body">
+                    <h6 class="card-title mb-1" style="color: var(--primary-color);"><strong>${nama}</strong> <span class="text-muted fw-normal fs-6">dari ${asal}</span></h6>
+                    <p class="card-text text-dark mt-2 fst-italic">"${pesan}"</p>
+                </div>
+            `;
+
+            daftarPesan.prepend(elemenPesan);
+            form.reset();
+        });
+    </script>
+</body>
+</html>
